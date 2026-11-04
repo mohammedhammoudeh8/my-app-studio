@@ -6,10 +6,10 @@ actual evidence; pending is a valid state. Keep explanations/help in
 
 ## Current stage
 
-- **Current feature:** APP-001.
-- **Status:** Neutral foundation; learner scope and decisions pending.
-- **Next step:** Confirm the local clone and SSH origin, run setup and try the page.
-- **Implementation marker:** `studio.json` starts at `implemented_through: 0`.
+- **Current feature:** APP-001 kept; APP-002 next.
+- **Status:** Fix-It Desk homepage implemented and checked; learner contributions recorded in LEARNING.md.
+- **Next step:** Agree APP-002 scope.
+- **Implementation marker:** `studio.json` is `implemented_through: 1`.
 
 This repository owns application code. Server/proxy changes and production
 deployment are outside these three local-development lessons. Prepared helpers
@@ -23,10 +23,10 @@ Keep account actions honest about their unfinished state.
 
 | Decision | Agreement |
 |---|---|
-| Visitor and concrete use situation | Pending |
-| Reused IS117 brand, or name / promise / primary archetype | Pending |
-| One visible choice and visitor benefit | Pending |
-| Own issue / branch / PR | Pending |
+| Visitor and concrete use situation | An employee at a small business whose laptop, printer or Wi-Fi just stopped working and who needs help fast |
+| Reused IS117 brand, or name / promise / primary archetype | New brand (not IS117). **Fix-It Desk** / "Tell us what broke. We handle the rest." / **The Caregiver**. Voice: calm, plain-spoken, reassuring. Learner's reason: "Fix-It Desk is an easy and fast way to troubleshoot technical issues for small businesses. I've always enjoyed tech troubleshooting and its relevant to my major." (Name and archetype picked from coach-offered options.) |
+| One visible choice and visitor benefit | Learner: "The simple visible choice makes it much easier for the visitor to navigate the site. Its straightforward and simple no need for unnecessary scrolling." Implemented as one main "Report a problem" button on a short page (concrete form suggested by coach). |
+| Own issue / branch / PR | [Issue #1](https://github.com/mohammedhammoudeh8/my-app-studio/issues/1) · branch `app-001` · PR: see Evidence |
 
 **Keep when:** the agreed identity is visible and usable at desktop/narrow widths;
 full foundation + APP-001 checks pass; AI review and the learner's actual check
@@ -81,7 +81,7 @@ customer research or claims that a timestamp proves learning.
 
 | Feature | Files / own issue / PR | Actual checks and learner observations | Kept / GitHub state |
 |---|---|---|---|
-| APP-001 | Pending | Not run; learner contributions pending | Pending |
+| APP-001 | `app/brand.json`, `app/static/logo.svg`, `app/templates/home.html`, `app/templates/base.html`, `studio.json` · [issue #1](https://github.com/mohammedhammoudeh8/my-app-studio/issues/1) | `check --lesson APP-001` and full `check` passed locally on Windows incl. Chromium (after enabling Developer Mode for a symlink test). First AI draft failed `test_chosen_brand_reaches_the_homepage` (apostrophe escaped as `&#39;`); fixed by rewording. Learner interpretation/observation in [LEARNING.md](LEARNING.md#app-001) | Kept; PR and CI linked in the PR |
 | APP-002 | Pending | Unfinished; explicit contracts not yet passed | Pending |
 | APP-003 | Pending | Unfinished; explicit contracts not yet passed | Pending |
 
