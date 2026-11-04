@@ -1,16 +1,16 @@
 {
-  "name": "Your Project",
-  "audience": "Not chosen yet",
-  "archetype": "Not chosen yet",
-  "promise": "Not chosen yet",
-  "headline": "A small idea. A real application.",
-  "summary": "This working page is your starting point. Give it a purpose and a brand, then build accounts and permissions one feature at a time.",
-  "voice": ["Not chosen yet"],
-  "design_direction": "Not chosen yet",
+  "name": "Fix-It Desk",
+  "audience": "Employees at a small business whose laptop, printer or Wi-Fi just stopped working and who need help fast",
+  "archetype": "The Caregiver",
+  "promise": "Tell us what broke. We handle the rest.",
+  "headline": "Something broke? We can help fix it.",
+  "summary": "Fix-It Desk is a fast, simple way for small-business teams to get tech problems troubleshot without the jargon.",
+  "voice": ["Calm", "Plain-spoken", "Reassuring"],
+  "design_direction": "One clear action, a short page with no unnecessary scrolling, and calm blues",
   "palette": {
-    "ink": "#182C34",
-    "paper": "#F6F5EF",
-    "accent": "#285A50",
+    "ink": "#13293D",
+    "paper": "#F4F7FA",
+    "accent": "#1D62A0",
     "surface": "#FFFFFF"
   }
 }
