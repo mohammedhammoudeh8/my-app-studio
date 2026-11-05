@@ -6,10 +6,10 @@ actual evidence; pending is a valid state. Keep explanations/help in
 
 ## Current stage
 
-- **Current feature:** APP-002 kept; APP-003 next.
-- **Status:** Fix-It Desk homepage and member accounts implemented and checked; learner contributions recorded in LEARNING.md.
-- **Next step:** Agree APP-003 scope.
-- **Implementation marker:** `studio.json` is `implemented_through: 2`.
+- **Current feature:** APP-003 kept; all three lessons complete.
+- **Status:** Fix-It Desk homepage, member accounts and server-enforced member/admin roles implemented and checked; learner contributions recorded in LEARNING.md.
+- **Next step:** Deployment to the existing server is a later, separately agreed scope.
+- **Implementation marker:** `studio.json` is `implemented_through: 3`.
 
 This repository owns application code. Server/proxy changes and production
 deployment are outside these three local-development lessons. Prepared helpers
@@ -65,9 +65,9 @@ permissions, including for an existing session after a role change.
 
 | Decision | Agreement |
 |---|---|
-| Intended admin-only result | Pending |
-| Actual allowed/denied request evidence | Pending |
-| Own issue / branch / PR | Pending |
+| Intended admin-only result | `/admin` page (heading "Administration") lists usernames and roles, read-only, no hashes. `GET /api/admin` returns the admin's username plus account and admin counts. Both read the user's **current role from the database** on every request via the prepared `require_admin`/`authenticate` helpers; a role claim inside the JWT is never trusted. The Admin menu link shows only for admins, which is presentation only. Roles change only with the trusted local command `studio.py user role USERNAME --role admin|member`; signup stays member-only. |
+| Actual allowed/denied request evidence | Anonymous: `GET /api/admin` 401, `/admin` redirects to `/login`. Member: `GET /api/admin` 403, `/admin` 403 "Admin access required". Admin (after the trusted command, same session): both 200. Demoted back to member: both 403 again without logging out. A re-signed token claiming `role: admin` still gets 403. |
+| Own issue / branch / PR | [Issue #5](https://github.com/mohammedhammoudeh8/my-app-studio/issues/5) · branch `app-003` · PR: see Evidence |
 
 **Keep when:** a direct request cannot bypass the role boundary, role changes
 take effect as specified, new signup remains member-only, and full cumulative
@@ -83,7 +83,7 @@ customer research or claims that a timestamp proves learning.
 |---|---|---|---|
 | APP-001 | `app/brand.json`, `app/static/logo.svg`, `app/templates/home.html`, `app/templates/base.html`, `studio.json` · [issue #1](https://github.com/mohammedhammoudeh8/my-app-studio/issues/1) | `check --lesson APP-001` and full `check` passed locally on Windows incl. Chromium (after enabling Developer Mode for a symlink test). First AI draft failed `test_chosen_brand_reaches_the_homepage` (apostrophe escaped as `&#39;`); fixed by rewording. Learner interpretation/observation in [LEARNING.md](LEARNING.md#app-001) | Kept; PR and CI linked in the PR |
 | APP-002 | `app/features/accounts.py`, `app/templates/signup.html`, `login.html`, `dashboard.html`, `home.html`, `studio.json` · [issue #3](https://github.com/mohammedhammoudeh8/my-app-studio/issues/3) | `check --lesson APP-002` and full `check` passed locally on Windows (96 foundation, 14 APP-002 contracts, real Chromium journey). Learner interpretation of `test_logout_revokes_a_copied_token` and browser observation in [LEARNING.md](LEARNING.md#app-002) | Kept; PR and CI linked in the PR |
-| APP-003 | Pending | Unfinished; explicit contracts not yet passed | Pending |
+| APP-003 | `app/features/roles.py`, `app/templates/admin.html`, `app/templates/admin_denied.html`, `app/static/site.css` (table styles), `studio.json` · [issue #5](https://github.com/mohammedhammoudeh8/my-app-studio/issues/5) | `check --lesson APP-003` and full `check` passed locally on Windows (foundation, all 18 APP-001–003 contracts, real Chromium journey including role promotion/demotion via the trusted command). Learner interpretation of `test_a_role_claim_cannot_override_the_current_database_role` and browser observation in [LEARNING.md](LEARNING.md#app-003) | Kept; PR and CI linked in the PR |
 
 The instructor's reference branches show possible implementations. They do not
 establish this repository's completion or the learner's own reasoning.

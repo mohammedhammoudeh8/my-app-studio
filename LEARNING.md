@@ -30,10 +30,10 @@ Accuracy approval is not proof of understanding. Label simulated trials explicit
 
 ## APP-003
 
-- Prediction: Pending.
-- Check interpretation: Pending.
-- Browser observation: Pending.
-- Keep decision: Pending.
-- Review: Pending.
-- Help/gaps: Pending.
-- Evidence links / next step: Keep APP-002 before agreeing this lesson.
+- Prediction: "They should get a 403 Forbidden. They're logged in, so it isn't a 401, but they aren't an admin, so the server should refuse and send back no admin data. Hiding the Admin link only changes what the menu shows. Anyone can still type the URL or send the request themselves, so the link being hidden doesn't stop anything. The real protection has to be on the server, which checks the user's role on every request to /api/admin and turns away anyone who isn't an admin."
+- Check interpretation: "It catches the bug where the server trusts whatever role is written inside the token instead of looking up the real role in the database. If that bug existed, someone could edit their token to say admin, or an old admin token could keep working after the person got demoted. It doesn't prove the signing key is actually kept secret, since the test used the real key on purpose. It also doesn't show that every other admin route is protected the same way."
+- Browser observation: "As a member, there was no Admin link in the menu, and going to /admin directly showed 'Admin access required' (403). Once my account was switched to admin, the Admin link showed up and /admin loaded the admin page. After switching back to member, the link disappeared again and /admin blocked me again. So the server checks my current role every time instead of remembering what I used to be."
+- Keep decision: "I'm keeping it. It got the 403 I expected, so the role comes from the database and not from the token. Later I'd add the same check on the other admin routes to be sure they all work this way."
+- Review: Learner reviewed and corrected these excerpts before commit.
+- Help/gaps: Coach wrote and tested the admin routes and pages using the prepared `require_admin` helper and chose the check to interpret. Learner ran the trusted role command himself to promote and demote his test account, and reworded one phrase in his observation after coach feedback.
+- Evidence links / next step: [SPEC.md](SPEC.md#app-003--server-enforced-roles), [issue #5](https://github.com/mohammedhammoudeh8/my-app-studio/issues/5). Deployment to the server is a later scope.
