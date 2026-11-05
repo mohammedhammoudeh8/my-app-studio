@@ -4,7 +4,7 @@
   <p class="eyebrow">Small-business IT help</p>
   <h1 id="hero-title">{{ brand.headline }}</h1>
   <p class="lede">{{ brand.summary }}</p>
-  {% if features.accounts %}<a class="button" href="/signup">Create your account <span aria-hidden="true">↗</span></a>
+  {% if features.accounts %}<a class="button" href="/signup">Create your account <span aria-hidden="true">→</span></a>
   {% else %}<a class="button" href="#next">Report a problem <span aria-hidden="true">↓</span></a>{% endif %}
 </section>
 <section id="idea" class="two-column" aria-labelledby="idea-title">
@@ -14,7 +14,7 @@
 </section>
 <section id="next" class="panel" aria-labelledby="next-title">
   <p class="eyebrow">Report a problem</p>
-  {% if features.accounts %}<h2 id="next-title">Your own space starts here.</h2><p>Make an account, sign in, and see how the server protects your member space.</p><a class="text-link" href="/signup">Join {{ brand.name }} →</a>
+  {% if features.accounts %}<h2 id="next-title">Start with an account.</h2><p>Create a member account and sign in to your private member space. The problem report form comes in a later step.</p><a class="text-link" href="/signup">Join {{ brand.name }} →</a>
   {% else %}<h2 id="next-title">Problem reports open soon.</h2><p>Fix-It Desk does not have accounts yet, so it cannot take a report today. Member sign-in is the next step; until then, please contact your usual IT contact.</p>{% endif %}
 </section>
 {% endblock %}
