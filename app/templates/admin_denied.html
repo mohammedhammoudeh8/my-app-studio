@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Admin access required · {{ brand.name }}{% endblock %}
+{% block content %}
+<section class="hero" aria-labelledby="denied-title">
+  <p class="eyebrow">403 · Forbidden</p>
+  <h1 id="denied-title">Admin access required</h1>
+  <p class="lede">You are signed in, but your account is a member account. This page is for Fix-It Desk admins only.</p>
+  <a class="button" href="/dashboard">Back to your member space <span aria-hidden="true">→</span></a>
+</section>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Administration · {{ brand.name }}{% endblock %}
+{% block content %}
+<section class="hero" aria-labelledby="admin-title">
+  <p class="eyebrow">Admin · signed in as {{ user.username }}</p>
+  <h1 id="admin-title">Administration</h1>
+  <p class="lede">Only admins can open this page. The server checks your current role on every request, not the menu.</p>
+</section>
+<section class="panel" aria-labelledby="accounts-title">
+  <p class="eyebrow">Accounts</p>
+  <h2 id="accounts-title">Who can sign in</h2>
+  <table>
+    <thead><tr><th scope="col">Username</th><th scope="col">Role</th></tr></thead>
+    <tbody>
+      {% for account in accounts %}<tr><td>{{ account.username }}</td><td>{{ account.role }}</td></tr>{% endfor %}
+    </tbody>
+  </table>
+  <p class="muted">Roles change only through the trusted local command, never through this website.</p>
+</section>
+{% endblock %}
