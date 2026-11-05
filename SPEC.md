@@ -6,10 +6,10 @@ actual evidence; pending is a valid state. Keep explanations/help in
 
 ## Current stage
 
-- **Current feature:** APP-001 kept; APP-002 next.
-- **Status:** Fix-It Desk homepage implemented and checked; learner contributions recorded in LEARNING.md.
-- **Next step:** Agree APP-002 scope.
-- **Implementation marker:** `studio.json` is `implemented_through: 1`.
+- **Current feature:** APP-002 kept; APP-003 next.
+- **Status:** Fix-It Desk homepage and member accounts implemented and checked; learner contributions recorded in LEARNING.md.
+- **Next step:** Agree APP-003 scope.
+- **Implementation marker:** `studio.json` is `implemented_through: 2`.
 
 This repository owns application code. Server/proxy changes and production
 deployment are outside these three local-development lessons. Prepared helpers
@@ -41,9 +41,9 @@ helpers; keep data local. New accounts cannot choose their role.
 
 | Decision | Agreement |
 |---|---|
-| Expected public/private behavior and account flow | Pending |
-| Valid and rejected cases to demonstrate | Pending |
-| Own issue / branch / PR | Pending |
+| Expected public/private behavior and account flow | Homepage public. Signup (username + 15–128 character password) creates a **member** and sends you to Log in. Login opens `/dashboard` ("Your member space") and sets an HttpOnly, SameSite=Lax session cookie holding a signed, expiring JWT. Anonymous `/dashboard` redirects to `/login`; anonymous `GET /api/me` returns 401; after login it returns 200 with only `id`, `username`, `role`. Logout (POST + CSRF) revokes the session on the server. HTML forms and JSON API (`/api/csrf`, `/api/signup`, `/api/login`, `/api/me`, `/api/logout`) call the same prepared helpers in `app/security.py`. |
+| Valid and rejected cases to demonstrate | Valid: signup → login → dashboard → `/api/me` 200 → logout. Rejected: duplicate username (409), short/long password, bad username or a `role` field at signup (422), wrong password and unknown user (same generic 401), too many attempts (429), missing/wrong CSRF or foreign Origin (403), `GET /api/logout` (405), a copied cookie after logout (401). |
+| Own issue / branch / PR | [Issue #3](https://github.com/mohammedhammoudeh8/my-app-studio/issues/3) · branch `app-002` · PR: see Evidence |
 
 **Keep when:** the agreed forms/API work; duplicate/invalid signup and wrong
 credentials are rejected; passwords are hashed; authentication uses validated,
@@ -82,7 +82,7 @@ customer research or claims that a timestamp proves learning.
 | Feature | Files / own issue / PR | Actual checks and learner observations | Kept / GitHub state |
 |---|---|---|---|
 | APP-001 | `app/brand.json`, `app/static/logo.svg`, `app/templates/home.html`, `app/templates/base.html`, `studio.json` · [issue #1](https://github.com/mohammedhammoudeh8/my-app-studio/issues/1) | `check --lesson APP-001` and full `check` passed locally on Windows incl. Chromium (after enabling Developer Mode for a symlink test). First AI draft failed `test_chosen_brand_reaches_the_homepage` (apostrophe escaped as `&#39;`); fixed by rewording. Learner interpretation/observation in [LEARNING.md](LEARNING.md#app-001) | Kept; PR and CI linked in the PR |
-| APP-002 | Pending | Unfinished; explicit contracts not yet passed | Pending |
+| APP-002 | `app/features/accounts.py`, `app/templates/signup.html`, `login.html`, `dashboard.html`, `home.html`, `studio.json` · [issue #3](https://github.com/mohammedhammoudeh8/my-app-studio/issues/3) | `check --lesson APP-002` and full `check` passed locally on Windows (96 foundation, 14 APP-002 contracts, real Chromium journey). Learner interpretation of `test_logout_revokes_a_copied_token` and browser observation in [LEARNING.md](LEARNING.md#app-002) | Kept; PR and CI linked in the PR |
 | APP-003 | Pending | Unfinished; explicit contracts not yet passed | Pending |
 
 The instructor's reference branches show possible implementations. They do not

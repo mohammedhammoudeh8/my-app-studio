@@ -20,13 +20,13 @@ Accuracy approval is not proof of understanding. Label simulated trials explicit
 
 ## APP-002
 
-- Prediction: Pending.
-- Check interpretation: Pending.
-- Browser observation: Pending.
-- Keep decision: Pending.
-- Review: Pending.
-- Help/gaps: Pending.
-- Evidence links / next step: Keep APP-001 before agreeing this lesson.
+- Prediction: "If you're not logged in and try to open `/dashboard`, the site should just send you to the login page. No peeking at member stuff. If you hit `/api/me`, you should get a 401 error back with no data, not a redirect. Once you log in, the session cookie tells the site who you are. The dashboard loads and shows your stuff, and `/api/me` gives back your own account info with a 200. You only ever see your own data, never someone else's, and nothing sensitive like your password hash."
+- Check interpretation: "It catches the bug where logging out only deletes the cookie in your browser while the server still accepts the token, so anyone who copied it could keep using your account. Since it got a 401, the server really ends the session on logout. It doesn't prove that sessions expire on time or that the site is safe in other ways, like whether the cookie can be stolen or faked in the first place."
+- Browser observation: "When creating an account I was prompted with entering a username and a 15 character password. After that was successful I was redirected to the log in page with your account is ready. I also tried signing in with an incorrect password which gave me a message stating my login credentials may be wrong. The /api/me displayed my user name, role, and member with a member id when logged in and displayed please log in when logged out. After logging out when visiting /dashboard it sent me back to the log in page."
+- Keep decision: "I'm keeping it. The test did what I predicted. After logout the copied cookie got a 401, so the server really ends the session instead of just clearing it from the browser."
+- Review: Learner reviewed and corrected these excerpts before commit.
+- Help/gaps: Coach wrote and tested the routes and templates using the prepared security helpers and chose the check to interpret. After coach feedback the learner corrected factual details in the first draft of the observation (what `/api/me` returns, where signup redirects) and added what the check does not prove.
+- Evidence links / next step: [SPEC.md](SPEC.md#app-002--signup-login-and-logout), [issue #3](https://github.com/mohammedhammoudeh8/my-app-studio/issues/3). Next: APP-003.
 
 ## APP-003
 
